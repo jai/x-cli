@@ -74,6 +74,22 @@ To add bookmark support:
 
 This is tracked in [#1](../../issues/1).
 
+## Why This Exists — Existing Tool Survey
+
+Before building `tw`, we evaluated every existing X/Twitter CLI tool we could find. None were viable:
+
+| Tool | Language | Status | Why Not |
+|------|----------|--------|---------|
+| **twurl** (Twitter official) | Ruby | Dead (last updated 2020) | v1.1 API only, Twitter themselves abandoned it |
+| **sferik/t** | Ruby | Dead | v1.1 only, hasn't tracked v2 API migration |
+| **twikit** | Python | Active but fragile | Cookie-based scraper, not API — breaks on auth changes, no official API support |
+| **tweepy** | Python | Active (library) | Library, not CLI — you'd still need to build the CLI layer on top |
+| **python-twitter-v2** | Python | Stale | Library only, minimal maintenance |
+| **twitter-api-v2 (npm)** | Node.js | Active (library) | Library, not CLI |
+| Various MCP servers | Mixed | Exist | We use CLIs, not MCP servers. Also most wrap v1.1 or are cookie scrapers |
+
+**tl;dr**: Every existing CLI is dead or targets the deprecated v1.1 API. The v2 API has good Python libraries but no proper CLI. So we built one.
+
 ## Architecture
 
 - **Language**: Python 3.10+
